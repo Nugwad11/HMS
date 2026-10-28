@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f6f2;
+  --fg: #14201b;
+  --mut: #58675f;
+  --card: #ffffff;
+  --line: #d8dfd9;
+  --pri: #0f5c4d;
+  --on: #ffffff;
+  --gold: #b9810c;
+  --bad: #b3261e;
+  --ok: #1b7a47;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1612;
+    --fg: #e8efea;
+    --mut: #9fb2a8;
+    --card: #15221c;
+    --line: #26372e;
+    --pri: #52c6a3;
+    --on: #05231a;
+    --gold: #e5b345;
+    --bad: #ff8c82;
+    --ok: #6fd49c;
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--bg);
+  --color-ink: var(--fg);
+  --color-card: var(--card);
+  --color-muted: var(--mut);
+  --color-line: var(--line);
+  --color-primary: var(--pri);
+  --color-primary-foreground: var(--on);
+  --color-gold: var(--gold);
+  --color-bad: var(--bad);
+  --color-ok: var(--ok);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif:
+    "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--pri);
+    color: var(--on);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-enter {
+  animation: toast-in 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .toast-enter {
+    animation: none;
+  }
+}
